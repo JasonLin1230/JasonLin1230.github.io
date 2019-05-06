@@ -117,7 +117,7 @@
 <meta name="keywords" content="God U,blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="关于">
-<meta property="og:url" content="http://godu.ink/about/index.html">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="God U">
 <meta property="og:description" content="God U&apos;s blog | 前端萌新 | 开源">
 <meta property="og:locale" content="zh-Hans">
@@ -173,13 +173,17 @@
 
 
 
+
   
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
 
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.3/dist/disqus.js"></script>
 
 
 
-  <link rel="canonical" href="http://godu.ink/about/">
+
+  <link rel="canonical" href="http://yoursite.com/about/">
 
 
 
@@ -401,35 +405,17 @@
 
     
       <script type="text/javascript">
-        if (disqus_config) {
-          var disqus_config = function () {
-            this.page.url = 'http://godu.ink/about/index.html';
-            this.page.identifier = 'about/index.html';
-            this.page.title = '关于';
-          };
-          if (window.DISQUS) {
-            $('.disqus-loading').remove();
-            window.DISQUS.reset({
-              reload: true,
-              config: function () {
-                this.page.url = 'http://godu.ink/about/index.html';
-                this.page.identifier = 'about/index.html';
-                this.page.title = '关于';
-              }
-            });
-          }
-        }
-        else {
-          var disqus_config = function () {
-            this.page.url = 'http://godu.ink/about/index.html';
-            this.page.identifier = 'about/index.html';
-            this.page.title = '关于';
-          };
-          var d = document, s = d.createElement('script');
-          s.src = 'https://godu-ink.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', '' + +new Date());
-          (d.head || d.body).appendChild(s);
-        }
+        window.DISQUS = null;
+        new DisqusJS({
+          shortname: 'godu-ink',
+          siteName: 'God U',
+          identifier: 'about/index.html',
+          url: 'http://yoursite.com/about/index.html',
+          api: 'https://disqus.diygod.me/api/',
+          apikey: 'uy3AY3XgzwB0r71jtFKz16BKewHozsDOprnxUjZqtiZ0zaTnh2Ckv5bqSyzkLfpc',
+          admin: 'GodU',
+          adminLabel: '服务生',
+        });
       </script>
     
 
@@ -567,7 +553,7 @@
       <div class="footer-image"></div>
       <div class="footer-inner">
         <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
-<p>托管于<a href="https://github.com/" target="_blank" rel="nofollow"> GitHub</a>. <a href="http://www.google.com/analytics/" target="_blank" rel="nofollow">Google Analytics </a>提供网站统计服务.</p>
+<p>托管于<a href="https://github.com/" target="_blank" rel="nofollow"> GitHub</a>. <a href="http://www.google.com/analytics/" target="_blank" rel="nofollow">Google Analytics </a>提供网站统计服务. <a href="https://www.aliyun.com/" target="_blank" rel="nofollow">Aliyun </a>提供 DNS 解析服务.</p>
 
 <p>© <span itemprop="copyrightYear">2019</span> God U.
     由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
