@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
+<url>
+ <loc>https://godu.ink</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/archives/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/donate/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/friends/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/message/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/about/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/2019/05/05/hexo-github搭建个人博客-sagiri主题/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/2019/05/02/hello-world/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://hexo.io/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://hexo.io/docs/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://hexo.io/docs/troubleshooting.html</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://github.com/hexojs/hexo/issues</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://hexo.io/docs/writing.html</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://github.com/jasonlin1230</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://jq.qq.com/?_wv=1027&amp;k=5mupegu</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://weibo.com/5723823690/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/archives/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://creativecommons.org/licenses/by-nc-sa/4.0/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://github.com/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>http://www.google.com/analytics/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://hexo.io/</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://github.com/diygod/hexo-theme-sagiri</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+<url>
+ <loc>https://godu.ink/sitemap.xml</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-05-05</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+</urlset>
