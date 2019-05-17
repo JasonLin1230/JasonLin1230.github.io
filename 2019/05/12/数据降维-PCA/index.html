@@ -113,17 +113,23 @@
 
 
 
-<meta name="description" content="God U&apos;s blog | 前端萌新 | 开源">
+<meta name="description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &amp;lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。 相关概念协方差(Covariance)协方差是描述不同变量之间的相关关">
 <meta name="keywords" content="God U,blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="God U">
-<meta property="og:url" content="http://godu.ink/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据降维-PCA">
+<meta property="og:url" content="http://godu.ink/2019/05/12/数据降维-PCA/index.html">
 <meta property="og:site_name" content="God U">
-<meta property="og:description" content="God U&apos;s blog | 前端萌新 | 开源">
+<meta property="og:description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &amp;lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。 相关概念协方差(Covariance)协方差是描述不同变量之间的相关关">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://godu.ink/images/2019/05/171100.png">
+<meta property="og:image" content="http://godu.ink/images/2019/05/172200.png">
+<meta property="og:image" content="http://godu.ink/images/2019/05/172210.png">
+<meta property="og:image" content="http://godu.ink/images/2019/05/172215.png">
+<meta property="og:updated_time" content="2019-05-17T14:36:10.757Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="God U">
-<meta name="twitter:description" content="God U&apos;s blog | 前端萌新 | 开源">
+<meta name="twitter:title" content="数据降维-PCA">
+<meta name="twitter:description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &amp;lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。 相关概念协方差(Covariance)协方差是描述不同变量之间的相关关">
+<meta name="twitter:image" content="http://godu.ink/images/2019/05/171100.png">
 
 
 
@@ -182,13 +188,13 @@
 
 
 
-  <link rel="canonical" href="http://godu.ink/">
+  <link rel="canonical" href="http://godu.ink/2019/05/12/数据降维-PCA/">
 
 
 
 
 
-  <title>God U</title>
+  <title>数据降维-PCA | God U</title>
   
 
 
@@ -216,8 +222,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><nav class="site-nav">
   
@@ -346,9 +351,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -394,9 +399,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/12/数据降维-PCA/" itemprop="url">数据降维-PCA</a></h1>
+          <h1 class="post-title" itemprop="name headline">数据降维-PCA</h1>
         
 
         <div class="post-meta">
@@ -468,342 +471,33 @@
       
 
       
-        
-          <p>PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。</p>
+        <p>PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。</p>
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="协方差-Covariance"><a href="#协方差-Covariance" class="headerlink" title="协方差(Covariance)"></a>协方差(Covariance)</h3><p>协方差是描述不同变量之间的相关关系，协方差&gt;0时说明 X和 Y是正相关关系，协方差&lt;0时 X和Y是负相关关系，协方差为0时 X和Y相互独立。  </p>
 <p>协方差的计算是针对两维的，对于n维的数据集，可以计算C(n,2)种协方差。<br>例如对于三维（x,y,z），其协方差矩阵如下，可看出协方差矩阵是一个对称矩阵（symmetrical），其对角线元素为每一维的方差：<br><img src="../../../../images/2019/05/171100.png" alt="三维协方差矩阵"></p>
-<h3 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h3><p> A是n阶方阵，如果存在数m和非零n维列向量 x，使得 Ax=mx 成立，则称 m 是矩阵A的一个特征值，向量x是矩阵A的特征向量。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/12/数据降维-PCA/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-date">
-			<div class="post-month">05月</div>
-			<div class="post-day">08</div>
-	</div>
-  
-  <div class="post-badge">
-    
-      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/机器学习/" itemprop="url" rel="index">
-          <span itemprop="name">机器学习</span>
-        </a>
-      </span>
-    
-      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/机器学习/算法/" itemprop="url" rel="index">
-          <span itemprop="name">算法</span>
-        </a>
-      </span>
-    
-  </div>
-  
-
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godu.ink/2019/05/08/常见聚类算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="God U">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/GodU.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="God U">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/08/常见聚类算法/" itemprop="url">常见聚类算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T22:40:08+08:00">
-                2019-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">•</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在“无监督学习”中，训练样本的标记信息是未知的，目标是通过对无标记训练样本的学习来揭示数据的内在性质及规律，为进一步的数据分析提供基础，此类学习任务中研究最多、应用最广的就是“聚类”。<br>本文将对几种常见的聚类算法进行简要的对比分析。（不涉及具体代码实现）</p>
-<h2 id="原型聚类-prototype-based-clustering"><a href="#原型聚类-prototype-based-clustering" class="headerlink" title="原型聚类(prototype-based clustering)"></a>原型聚类(prototype-based clustering)</h2><p>此类算法假设聚类结构能通过一组原型刻画，在现实聚类任务中极为常用。通常情形下，算法先对原型进行初始化，然后对原型进行迭代更新求解。采用不同的原型表示、不同的求解方式，将产生不用的算法。比较著名的原型聚类算法包括：</p>
+<h3 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h3><p> A是n阶方阵，如果存在数m和非零n维列向量 x，使得 Ax=mx 成立，则称 m 是矩阵A的一个特征值，向量x是矩阵A的特征向量。<br><a id="more"></a></p>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><p>对于正交属性空间中的样本点，如何使用一个超平面对所有的样本进行恰当的表达？  </p>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>能够达到要求的超平面大概应该具有这样的性质：</p>
 <ul>
-<li>K均值算法（K-means）</li>
-<li>学习向量量化（Learning Vector Quantization）</li>
-<li>高斯混合聚类（Maxture-of-Gaussian）</li>
+<li>最近重构性：样本点到这个超平面的距离都足够近。</li>
+<li>最大可分性：样本点在这个超平面上的投影点能尽可能分开。 </li>
 </ul>
-<p>前两种用原型向量来刻画聚类结构的不同，而高斯混合聚类采用概率模型来表达聚类原型。</p>
-<h3 id="K-means聚类"><a href="#K-means聚类" class="headerlink" title="K-means聚类"></a>K-means聚类</h3><p>算法步骤： </p>
-<ol>
-<li>首先我们选择一些类/组，并随机初始化它们各自的中心点。中心点是与每个数据点向量长度相同的位置。这需要我们提前预知类的数量(即中心点的数量)。</li>
-<li>计算每个数据点到中心点的距离，数据点距离哪个中心点最近就划分到哪一类中。</li>
-<li>计算每一类中中心点作为新的中心点。 </li>
-<li>重复以上步骤，直到每一类中心在每次迭代后变化不大为止。</li>
+<p>有趣的是：<br>基于最近重构性和最大可分性，能分别得到主成分分析的两种等价推导。</p>
+<p>从最近重构性出发，PCA优化目标为：<br><img src="../../../../images/2019/05/172200.png" alt="PCA优化目标1"><br>从最大可分性出发，PCA优化目标为：<br><img src="../../../../images/2019/05/172210.png" alt="PCA优化目标2"><br>显然，上述两个优化目标是等价的。<br>因此，只需对协方差矩阵进行特征值分解，将求得的特征值排序即可。</p>
+<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
+<li>去掉数据的类别特征（label），将去掉后的d维数据作为样本</li>
+<li>计算d维的均值向量（即所有数据的每一维向量的均值）</li>
+<li>计算所有数据的协方差矩阵（或者散布矩阵）</li>
+<li>计算特征值（e1,e2,…,ed）以及相应的特征向量（lambda1,lambda2,…,lambda d）</li>
+<li>按照特征值的大小对特征向量降序排序，选择前k个最大的特征向量，组成d*k维的矩阵W（其中每一列代表一个特征向量）</li>
+<li>运用d <em> K的特征向量矩阵W将样本数据变换成新的子空间。（用数学式子表达就是，其中x是d </em> 1维的向量，代表一个样本，y是K * 1维的在新的子空间里的向量）</li>
 </ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/08/常见聚类算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-date">
-			<div class="post-month">05月</div>
-			<div class="post-day">05</div>
-	</div>
-  
-
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godu.ink/2019/05/05/Hexo-Github搭建个人博客-Sagiri主题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="God U">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/GodU.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="God U">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/05/Hexo-Github搭建个人博客-Sagiri主题/" itemprop="url">Hexo+Github搭建个人博客(Sagiri主题)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T10:28:43+08:00">
-                2019-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://godu.ink/">先睹为快</a></p>
-<h2 id="一点点准备工作"><a href="#一点点准备工作" class="headerlink" title="一点点准备工作"></a>一点点准备工作</h2><ul>
-<li>你至少得拥有一个GitHub账户</li>
-<li>安装node.js</li>
-<li>安装Git</li>
+<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p><img src="../../../../images/2019/05/172215.png" alt="PCA算法描述"></p>
+<h3 id="算法评价"><a href="#算法评价" class="headerlink" title="算法评价"></a>算法评价</h3><p>降维后低位空间的位数d’通常由用户事先指定，或通过在d’值不同的低位空间中对k近邻分类器进行交叉验证来选取较好的d’值。对于PCA，还可从重构角度设置一个重构阈值。<br>此外，低维空间与原始高位空间必有不同。这是降维导致的结果，舍弃这部分信息也是必要的：</p>
+<ul>
+<li>一方面，舍弃这部分信息之后能使样本的采样密度增大，这正是降维的重要动机。</li>
+<li>另一方面，当数据受到噪声影响时，最小的特征值对应的特征向量往往与噪声有关，将他们舍弃可以在一定程度上起到去噪的效果。</li>
 </ul>
-<h2 id="创建GitHub项目仓库"><a href="#创建GitHub项目仓库" class="headerlink" title="创建GitHub项目仓库"></a>创建GitHub项目仓库</h2><p>创建一个名为[username].github.io的仓库。<br>每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库。<br><em>注意：username必须是你的GitHub账户ID，并非昵称；创建完成，等待生效也可能会花费一段时间</em></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/05/Hexo-Github搭建个人博客-Sagiri主题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+
       
     </div>
     
@@ -813,7 +507,38 @@
     
 
     
+      <div class="post-share">分享到：</div>
+    
 
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="God U 微信扫一扫，向我赞赏">
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="God U 支付宝扫一扫，向我赞赏">
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -822,136 +547,25 @@
       
 
       
-
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-date">
-			<div class="post-month">05月</div>
-			<div class="post-day">02</div>
-	</div>
-  
-
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godu.ink/2019/05/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="God U">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/GodU.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="God U">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/02/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-02T21:47:34+08:00">
-                2019-05-02
-              </time>
+              <a href="/2019/05/08/常见聚类算法/" rel="next" title="常见聚类算法">
+                <i class="fa fa-chevron-left"></i> 常见聚类算法
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/02/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
     </footer>
   </div>
@@ -961,10 +575,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -973,10 +588,38 @@
 
           
 
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <div class="disqus-loading">
+          <strong>Disqus 加载中...</strong>
+          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
 
 
   
 
+    
+      <script type="text/javascript">
+        window.DISQUS = null;
+        new DisqusJS({
+          shortname: 'godu-ink',
+          siteName: 'God U',
+          identifier: '2019/05/12/数据降维-PCA/',
+          url: 'http://godu.ink/2019/05/12/数据降维-PCA/',
+          api: 'https://disqus.godu.ink/api/',
+          apikey: 'uy3AY3XgzwB0r71jtFKz16BKewHozsDOprnxUjZqtiZ0zaTnh2Ckv5bqSyzkLfpc',
+          admin: 'GodU',
+          adminLabel: '服务生',
+        });
+      </script>
     
 
   
@@ -1025,8 +668,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1106,6 +758,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-number">1.</span> <span class="nav-text">相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#协方差-Covariance"><span class="nav-number">1.1.</span> <span class="nav-text">协方差(Covariance)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征值和特征向量"><span class="nav-number">1.2.</span> <span class="nav-text">特征值和特征向量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA"><span class="nav-number">2.</span> <span class="nav-text">PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题引入"><span class="nav-number">2.1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">2.2.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法步骤"><span class="nav-number">2.3.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">2.4.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法评价"><span class="nav-number">2.5.</span> <span class="nav-text">算法评价</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
