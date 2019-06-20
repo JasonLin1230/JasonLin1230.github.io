@@ -113,22 +113,22 @@
 
 
 
-<meta name="description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &amp;lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。 相关概念协方差(Covariance)协方差是描述不同变量之间的相关关">
+<meta name="description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA 的思想是将 n 维特征映射到 k 维上（k &amp;lt; n)，这 k 维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的 k 个特征互不相关。 相关概念协方差(Covariance)协方差是描述不">
 <meta name="keywords" content="God U,blog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据降维-PCA">
 <meta property="og:url" content="http://godu.ink/2019/05/12/数据降维-PCA/index.html">
 <meta property="og:site_name" content="God U">
-<meta property="og:description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &amp;lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。 相关概念协方差(Covariance)协方差是描述不同变量之间的相关关">
+<meta property="og:description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA 的思想是将 n 维特征映射到 k 维上（k &amp;lt; n)，这 k 维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的 k 个特征互不相关。 相关概念协方差(Covariance)协方差是描述不">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://godu.ink/images/2019/05/171100.png">
 <meta property="og:image" content="http://godu.ink/images/2019/05/172200.png">
 <meta property="og:image" content="http://godu.ink/images/2019/05/172210.png">
 <meta property="og:image" content="http://godu.ink/images/2019/05/172215.png">
-<meta property="og:updated_time" content="2019-05-17T14:42:24.614Z">
+<meta property="og:updated_time" content="2019-06-20T08:58:53.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据降维-PCA">
-<meta name="twitter:description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &amp;lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。 相关概念协方差(Covariance)协方差是描述不同变量之间的相关关">
+<meta name="twitter:description" content="PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA 的思想是将 n 维特征映射到 k 维上（k &amp;lt; n)，这 k 维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的 k 个特征互不相关。 相关概念协方差(Covariance)协方差是描述不">
 <meta name="twitter:image" content="http://godu.ink/images/2019/05/171100.png">
 
 
@@ -471,28 +471,29 @@
       
 
       
-        <p>PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。</p>
-<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="协方差-Covariance"><a href="#协方差-Covariance" class="headerlink" title="协方差(Covariance)"></a>协方差(Covariance)</h3><p>协方差是描述不同变量之间的相关关系，协方差&gt;0时说明 X和 Y是正相关关系，协方差&lt;0时 X和Y是负相关关系，协方差为0时 X和Y相互独立。  </p>
-<p>协方差的计算是针对两维的，对于n维的数据集，可以计算C(n,2)种协方差。<br>例如对于三维（x,y,z），其协方差矩阵如下，可看出协方差矩阵是一个对称矩阵（symmetrical），其对角线元素为每一维的方差：<br><img src="../../../../images/2019/05/171100.png" alt="三维协方差矩阵"></p>
-<h3 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h3><p> A是n阶方阵，如果存在数m和非零n维列向量 x，使得 Ax=mx 成立，则称 m 是矩阵A的一个特征值，向量x是矩阵A的特征向量。<br><a id="more"></a></p>
-<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><p>对于正交属性空间中的样本点，如何使用一个超平面对所有的样本进行恰当的表达？  </p>
+        <p>PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA 的思想是将 n 维特征映射到 k 维上（k &lt; n)，这 k 维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的 k 个特征互不相关。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="协方差-Covariance"><a href="#协方差-Covariance" class="headerlink" title="协方差(Covariance)"></a>协方差(Covariance)</h3><p>协方差是描述不同变量之间的相关关系，协方差&gt;0 时说明 X 和 Y 是正相关关系，协方差&lt;0 时 X 和 Y 是负相关关系，协方差为 0 时 X 和 Y 相互独立。</p>
+<p>协方差的计算是针对两维的，对于 n 维的数据集，可以计算 C(n,2)种协方差。<br>例如对于三维（x,y,z），其协方差矩阵如下，可看出协方差矩阵是一个对称矩阵（symmetrical），其对角线元素为每一维的方差：<br><img src="../../../../images/2019/05/171100.png" alt="三维协方差矩阵"></p>
+<a id="more"></a>
+<h3 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h3><p>A 是 n 阶方阵，如果存在数 m 和非零 n 维列向量 x，使得 Ax=mx 成立，则称 m 是矩阵 A 的一个特征值，向量 x 是矩阵 A 的特征向量。</p>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><p>对于正交属性空间中的样本点，如何使用一个超平面对所有的样本进行恰当的表达？</p>
 <h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>能够达到要求的超平面大概应该具有这样的性质：</p>
 <ul>
 <li>最近重构性：样本点到这个超平面的距离都足够近。</li>
-<li>最大可分性：样本点在这个超平面上的投影点能尽可能分开。 </li>
+<li>最大可分性：样本点在这个超平面上的投影点能尽可能分开。</li>
 </ul>
 <p>有趣的是：<br>基于最近重构性和最大可分性，能分别得到主成分分析的两种等价推导。</p>
-<p>从最近重构性出发，PCA优化目标为：<br><img src="../../../../images/2019/05/172200.png" alt="PCA优化目标1"><br>从最大可分性出发，PCA优化目标为：<br><img src="../../../../images/2019/05/172210.png" alt="PCA优化目标2"><br>显然，上述两个优化目标是等价的。<br>因此，只需对协方差矩阵进行特征值分解，将求得的特征值排序即可。</p>
+<p>从最近重构性出发，PCA 优化目标为：<br><img src="../../../../images/2019/05/172200.png" alt="PCA优化目标1"><br>从最大可分性出发，PCA 优化目标为：<br><img src="../../../../images/2019/05/172210.png" alt="PCA优化目标2"><br>显然，上述两个优化目标是等价的。<br>因此，只需对协方差矩阵进行特征值分解，将求得的特征值排序即可。</p>
 <h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
-<li>去掉数据的类别特征（label），将去掉后的d维数据作为样本</li>
-<li>计算d维的均值向量（即所有数据的每一维向量的均值）</li>
+<li>去掉数据的类别特征（label），将去掉后的 d 维数据作为样本</li>
+<li>计算 d 维的均值向量（即所有数据的每一维向量的均值）</li>
 <li>计算所有数据的协方差矩阵（或者散布矩阵）</li>
 <li>计算特征值（e1,e2,…,ed）以及相应的特征向量（lambda1,lambda2,…,lambda d）</li>
-<li>按照特征值的大小对特征向量降序排序，选择前k个最大的特征向量，组成d*k维的矩阵W（其中每一列代表一个特征向量）</li>
-<li>运用d*K的特征向量矩阵W将样本数据变换成新的子空间。（用数学式子表达就是，其中x是d*1维的向量，代表一个样本，y是K*1维的在新的子空间里的向量）</li>
+<li>按照特征值的大小对特征向量降序排序，选择前 k 个最大的特征向量，组成 d*k 维的矩阵 W（其中每一列代表一个特征向量）</li>
+<li>运用 d*K 的特征向量矩阵 W 将样本数据变换成新的子空间。（用数学式子表达就是，其中 x 是 d*1 维的向量，代表一个样本，y 是 K*1 维的在新的子空间里的向量）</li>
 </ol>
 <h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p><img src="../../../../images/2019/05/172215.png" alt="PCA算法描述"></p>
-<h3 id="算法评价"><a href="#算法评价" class="headerlink" title="算法评价"></a>算法评价</h3><p>降维后低位空间的位数d’通常由用户事先指定，或通过在d’值不同的低位空间中对k近邻分类器进行交叉验证来选取较好的d’值。对于PCA，还可从重构角度设置一个重构阈值。<br>此外，低维空间与原始高位空间必有不同。这是降维导致的结果，舍弃这部分信息也是必要的：</p>
+<h3 id="算法评价"><a href="#算法评价" class="headerlink" title="算法评价"></a>算法评价</h3><p>降维后低位空间的位数 d’通常由用户事先指定，或通过在 d’值不同的低位空间中对 k 近邻分类器进行交叉验证来选取较好的 d’值。对于 PCA，还可从重构角度设置一个重构阈值。<br>此外，低维空间与原始高位空间必有不同。这是降维导致的结果，舍弃这部分信息也是必要的：</p>
 <ul>
 <li>一方面，舍弃这部分信息之后能使样本的采样密度增大，这正是降维的重要动机。</li>
 <li>另一方面，当数据受到噪声影响时，最小的特征值对应的特征向量往往与噪声有关，将他们舍弃可以在一定程度上起到去噪的效果。</li>
@@ -725,7 +726,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

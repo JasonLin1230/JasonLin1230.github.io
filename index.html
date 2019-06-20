@@ -362,6 +362,192 @@
   
   <div class="post-date">
 			<div class="post-month">06月</div>
+			<div class="post-day">20</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/记事本/" itemprop="url" rel="index">
+          <span itemprop="name">记事本</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godu.ink/2019/06/20/《致我们暖暖的小时光》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="God U">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/GodU.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="God U">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/20/《致我们暖暖的小时光》/" itemprop="url">《致我们暖暖的小时光》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T16:17:17+08:00">
+                2019-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/记事本/" itemprop="url" rel="index">
+                    <span itemprop="name">记事本</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+<div class="aplayer" id="aplayer-nuannuan"></div>
+<script>
+$(function () {
+    $.ajax({
+        url: 'https://api.i-meto.com/meting/api?server=netease&type=song&id=1357963386',
+        success: function (list) {
+            var ap = new APlayer({
+                element: document.getElementById('aplayer-nuannuan'),
+                showlrc: 3,
+                theme: '#8d7561',
+                music: JSON.parse(list)[0]
+            });
+            window.aplayers || (window.aplayers = []);
+            window.aplayers.push(ap);
+        }
+    })
+})
+</script>
+
+<p>实名爱了这个剧！！</p>
+<p>真好看啊。</p>
+<blockquote>
+<p>好看就好看，你发博客干嘛？</p>
+</blockquote>
+<p>因为我要交作业，我要写观后感。</p>
+
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/06/20/《致我们暖暖的小时光》/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">06月</div>
 			<div class="post-day">10</div>
 	</div>
   
@@ -814,11 +1000,10 @@ $(function () {
 
       
         
-          <p>Redis 是完全开源免费、遵守BSD协议的一种NoSQL数据库，一个高性能的key-value数据库。</p>
-<h2 id="配置linux系统"><a href="#配置linux系统" class="headerlink" title="配置linux系统"></a>配置linux系统</h2><p>这不是本文的重点，简单介绍一下两种方案。</p>
-<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>安装虚拟机，并在虚拟机中安装linux系统。</p>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>我是之前购买的阿里云ECS，选择了CentOS 7.6 64位镜像</p>
-<h2 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h2><h3 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h3><p>这里可以使用cmd命令行，也可以使用远程连接工具PuTTY来操作。我使用的PuTTY，在这里<a href="https://www.putty.org/" target="_blank" rel="noopener">下载</a><br>cmd窗口使用如下命令连接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -l root [你的服务器IP]</span><br></pre></td></tr></table></figure></p>
+          <p>Redis 是完全开源免费、遵守 BSD 协议的一种 NoSQL 数据库，一个高性能的 key-value 数据库。</p>
+<h2 id="配置-linux-系统"><a href="#配置-linux-系统" class="headerlink" title="配置 linux 系统"></a>配置 linux 系统</h2><p>这不是本文的重点，简单介绍一下两种方案。</p>
+<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>安装虚拟机，并在虚拟机中安装 linux 系统。</p>
+<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>我是之前购买的阿里云 ECS，选择了 CentOS 7.6 64 位镜像</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/28/Redis入门(一)/#more" rel="contents">
@@ -1145,17 +1330,13 @@ $(function () {
       
         
           <blockquote>
-<p>Yahoo前端性能优化军规  </p>
+<p>Yahoo 前端性能优化军规</p>
 </blockquote>
 <p><em>本文介绍的是非常基础的传统前端优化策略</em></p>
-<h2 id="14条常用优化规则"><a href="#14条常用优化规则" class="headerlink" title="14条常用优化规则"></a>14条常用优化规则</h2><h3 id="减少HTTP请求"><a href="#减少HTTP请求" class="headerlink" title="减少HTTP请求"></a>减少HTTP请求</h3><ul>
-<li>合并文件：通过把尽量多的脚本文件放在一个文件中的方式来减少请求数，当然，css文件也可以这样。</li>
-<li>CSS Sprites：减少图片请求数量的首选方式。把背景图片都整合到一张图片中，然后用CSS的background-image和background-position属性来定位要显示的部分。</li>
-<li>行内图片（Base64编码）：用data: URL模式来把图片嵌入页面。把图像文件的内容直接写在了HTML 文件中，这样做的好处是，节省了一个HTTP 请求。坏处是浏览器不会缓存这种图像。<br><img src="../../../../images/2019/05/251000.png" alt="减少HTTP请求"></li>
-</ul>
-<h3 id="使用内容分发网络CDN"><a href="#使用内容分发网络CDN" class="headerlink" title="使用内容分发网络CDN"></a>使用内容分发网络CDN</h3><ul>
-<li>把内容部署在多个地理位置分散的服务器上能让用户更快地载入页面。  </li>
-<li>典型地，选择用来发送内容的服务器是基于网络距离的衡量标准的。例如：选跳数（hop）最少的或者响应时间最快的服务器。</li>
+<h2 id="14-条常用优化规则"><a href="#14-条常用优化规则" class="headerlink" title="14 条常用优化规则"></a>14 条常用优化规则</h2><h3 id="减少-HTTP-请求"><a href="#减少-HTTP-请求" class="headerlink" title="减少 HTTP 请求"></a>减少 HTTP 请求</h3><ul>
+<li>合并文件：通过把尽量多的脚本文件放在一个文件中的方式来减少请求数，当然，css 文件也可以这样。</li>
+<li>CSS Sprites：减少图片请求数量的首选方式。把背景图片都整合到一张图片中，然后用 CSS 的 background-image 和 background-position 属性来定位要显示的部分。</li>
+<li>行内图片（Base64 编码）：用 data: URL 模式来把图片嵌入页面。把图像文件的内容直接写在了 HTML 文件中，这样做的好处是，节省了一个 HTTP 请求。坏处是浏览器不会缓存这种图像。<br><img src="../../../../images/2019/05/251000.png" alt="减少HTTP请求"></li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1317,10 +1498,9 @@ $(function () {
         
           <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).</p>
 <p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).</p>
-<p>How many possible unique paths are there?  </p>
+<p>How many possible unique paths are there?</p>
 <p><img src="../../../../images/2019/05/241000.png" alt="problem"></p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有个机器人位于表格（m x n）左上角的起点，它每次只能向右或向下移动一格，那么到达右下角的终点，一共有多少条路径？<br>这里的m、n并不是行、列的个数，相反，更类似于横纵坐标</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="Example1"><a href="#Example1" class="headerlink" title="Example1"></a>Example1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 3, n = 2</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:</span><br><span class="line">1. Right -&gt; Right -&gt; Down</span><br><span class="line">2. Right -&gt; Down -&gt; Right</span><br><span class="line">3. Down -&gt; Right -&gt; Right</span><br></pre></td></tr></table></figure>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有个机器人位于表格（m x n）左上角的起点，它每次只能向右或向下移动一格，那么到达右下角的终点，一共有多少条路径？<br>这里的 m、n 并不是行、列的个数，相反，更类似于横纵坐标</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/24/LeetCode62-UniquePaths/#more" rel="contents">
@@ -1479,10 +1659,9 @@ $(function () {
 
       
         
-          <p>PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA的思想是将n维特征映射到k维上（k &lt; n)，这k维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的k个特征互不相关。</p>
-<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="协方差-Covariance"><a href="#协方差-Covariance" class="headerlink" title="协方差(Covariance)"></a>协方差(Covariance)</h3><p>协方差是描述不同变量之间的相关关系，协方差&gt;0时说明 X和 Y是正相关关系，协方差&lt;0时 X和Y是负相关关系，协方差为0时 X和Y相互独立。  </p>
-<p>协方差的计算是针对两维的，对于n维的数据集，可以计算C(n,2)种协方差。<br>例如对于三维（x,y,z），其协方差矩阵如下，可看出协方差矩阵是一个对称矩阵（symmetrical），其对角线元素为每一维的方差：<br><img src="../../../../images/2019/05/171100.png" alt="三维协方差矩阵"></p>
-<h3 id="特征值和特征向量"><a href="#特征值和特征向量" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h3><p> A是n阶方阵，如果存在数m和非零n维列向量 x，使得 Ax=mx 成立，则称 m 是矩阵A的一个特征值，向量x是矩阵A的特征向量。<br>
+          <p>PCA(Principal Component Analysis)，即主成分分析方法，是一种使用最广泛的数据降维算法，是基于变量协方差矩阵对数据进行压缩降维、去噪的有效方法，PCA 的思想是将 n 维特征映射到 k 维上（k &lt; n)，这 k 维特征称为主元，是旧特征的线性组合，这些线性组合最大化样本方差，尽量使新的 k 个特征互不相关。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="协方差-Covariance"><a href="#协方差-Covariance" class="headerlink" title="协方差(Covariance)"></a>协方差(Covariance)</h3><p>协方差是描述不同变量之间的相关关系，协方差&gt;0 时说明 X 和 Y 是正相关关系，协方差&lt;0 时 X 和 Y 是负相关关系，协方差为 0 时 X 和 Y 相互独立。</p>
+<p>协方差的计算是针对两维的，对于 n 维的数据集，可以计算 C(n,2)种协方差。<br>例如对于三维（x,y,z），其协方差矩阵如下，可看出协方差矩阵是一个对称矩阵（symmetrical），其对角线元素为每一维的方差：<br><img src="../../../../images/2019/05/171100.png" alt="三维协方差矩阵"></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/12/数据降维-PCA/#more" rel="contents">
@@ -1492,7 +1671,7 @@ $(function () {
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
     
     
     
@@ -1661,18 +1840,11 @@ $(function () {
           <p>在“无监督学习”中，训练样本的标记信息是未知的，目标是通过对无标记训练样本的学习来揭示数据的内在性质及规律，为进一步的数据分析提供基础，此类学习任务中研究最多、应用最广的就是“聚类”。<br>本文将对几种常见的聚类算法进行简要的对比分析。（不涉及具体代码实现）</p>
 <h2 id="原型聚类-prototype-based-clustering"><a href="#原型聚类-prototype-based-clustering" class="headerlink" title="原型聚类(prototype-based clustering)"></a>原型聚类(prototype-based clustering)</h2><p>此类算法假设聚类结构能通过一组原型刻画，在现实聚类任务中极为常用。通常情形下，算法先对原型进行初始化，然后对原型进行迭代更新求解。采用不同的原型表示、不同的求解方式，将产生不用的算法。比较著名的原型聚类算法包括：</p>
 <ul>
-<li>K均值算法（K-means）</li>
+<li>K 均值算法（K-means）</li>
 <li>学习向量量化（Learning Vector Quantization）</li>
 <li>高斯混合聚类（Maxture-of-Gaussian）</li>
 </ul>
 <p>前两种用原型向量来刻画聚类结构的不同，而高斯混合聚类采用概率模型来表达聚类原型。</p>
-<h3 id="K-means聚类"><a href="#K-means聚类" class="headerlink" title="K-means聚类"></a>K-means聚类</h3><p>算法步骤： </p>
-<ol>
-<li>首先我们选择一些类/组，并随机初始化它们各自的中心点。中心点是与每个数据点向量长度相同的位置。这需要我们提前预知类的数量(即中心点的数量)。</li>
-<li>计算每个数据点到中心点的距离，数据点距离哪个中心点最近就划分到哪一类中。</li>
-<li>计算每一类中中心点作为新的中心点。 </li>
-<li>重复以上步骤，直到每一类中心在每次迭代后变化不大为止。</li>
-</ol>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/08/常见聚类算法/#more" rel="contents">
@@ -1843,138 +2015,13 @@ $(function () {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-date">
-			<div class="post-month">05月</div>
-			<div class="post-day">02</div>
-	</div>
-  
-
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godu.ink/2019/05/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="God U">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/GodU.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="God U">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/02/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-02T21:47:34+08:00">
-                2019-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/02/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2079,7 +2126,7 @@ $(function () {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
