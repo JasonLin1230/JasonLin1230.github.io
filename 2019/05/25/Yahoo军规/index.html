@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <meta name="msvalidate.01" content="4D2A7107711CF478F6F0AB59551EB8BD">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Sigmar One:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/social-share.js/1.0.9/css/share.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=0.0.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=0.0.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=0.0.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=0.0.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="God U,blog">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Yahoo 前端性能优化军规  本文介绍的是非常基础的传统前端优化策略 14 条常用优化规则减少 HTTP 请求 合并文件：通过把尽量多的脚本文件放在一个文件中的方式来减少请求数，当然，css 文件也可以这样。 CSS Sprites：减少图片请求数量的首选方式。把背景图片都整合到一张图片中，然后用 CSS 的 background-image 和 background-position 属性来">
+<meta name="keywords" content="God U,blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yahoo军规">
+<meta property="og:url" content="http://godu.ink/2019/05/25/Yahoo军规/index.html">
+<meta property="og:site_name" content="God U">
+<meta property="og:description" content="Yahoo 前端性能优化军规  本文介绍的是非常基础的传统前端优化策略 14 条常用优化规则减少 HTTP 请求 合并文件：通过把尽量多的脚本文件放在一个文件中的方式来减少请求数，当然，css 文件也可以这样。 CSS Sprites：减少图片请求数量的首选方式。把背景图片都整合到一张图片中，然后用 CSS 的 background-image 和 background-position 属性来">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://godu.ink/images/2019/05/251000.jpg">
+<meta property="og:image" content="http://godu.ink/images/2019/05/251010.jpg">
+<meta property="og:image" content="http://godu.ink/images/2019/05/251020.jpg">
+<meta property="og:image" content="http://godu.ink/images/2019/05/251030.jpg">
+<meta property="og:updated_time" content="2019-07-04T04:09:16.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yahoo军规">
+<meta name="twitter:description" content="Yahoo 前端性能优化军规  本文介绍的是非常基础的传统前端优化策略 14 条常用优化规则减少 HTTP 请求 合并文件：通过把尽量多的脚本文件放在一个文件中的方式来减少请求数，当然，css 文件也可以这样。 CSS Sprites：减少图片请求数量的首选方式。把背景图片都整合到一张图片中，然后用 CSS 的 background-image 和 background-position 属性来">
+<meta name="twitter:image" content="http://godu.ink/images/2019/05/251000.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '0.0.4',
+    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    since: '5/2/2019 11:30:00',
+    onlineAPI: '',
+    site: {
+      title: 'God U',
+      subtitle: '',
+      author: 'God U'
+    },
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    leancloud: {
+      enable: false,
+      appID: '',
+      appKey: ''
+    },
+    favicon: {
+      visibilitychange: true,
+      narmal: '/images/favicon.ico',
+      hidden: '/images/failure.ico',
+      show_text: '(/≧▽≦/)咦！又好了！',
+      hide_text: '(●—●)哦豁，去哪啦！'
+    }
+  };
+</script>
+
+
+
+
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.3/dist/disqus.js"></script>
+
+
+
+
+  <link rel="canonical" href="http://godu.ink/2019/05/25/Yahoo军规/">
+
+
+
+
+
+  <title>Yahoo军规 | God U</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-139527723-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" class="theme-darling">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-投喂">
+          <a href="/donate/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cutlery"></i> <br>
+            
+            投喂
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-后宫">
+          <a href="/friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mars"></i> <br>
+            
+            后宫
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-留言板">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br>
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      <li class="menu-item search">
+          <form class="search-form">
+            <input name="keyword" type="text" class="search-input" placeholder="站内搜索">
+            <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+          </form>
+      </li>
+    </ul>
+  
+
+  
+</nav>
+
+<div class="site-brand-wrapper" style="background-image: url(/images/header-sagiri.jpg)">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <div class="brand">
+        <span class="logo-line-before"><i></i></span>
+        <div class="site-title">
+          <div id="animate" class="animate">
+            <span>G</span><span>o</span><span>d</span><span> </span><span>U</span>
+          </div>
+          <div id="guide" class="guide">
+            <span>G</span><span>o</span><span>d</span><span> </span><span>U</span>
+          </div>
+        </div>
+        <span class="logo-line-after"><i></i></span>
+      </div>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-master-avatar" itemprop="image" src="/images/GodU.jpg" alt="God U">
+    <h2 class="site-master-description" itemprop="description">
+        <span>Life is short，</span><span>make it wonderful！</span>
+    </h2>
+</div>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">05月</div>
+			<div class="post-day">25</div>
+	</div>
+  
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/前端/" itemprop="url" rel="index">
+          <span itemprop="name">前端</span>
+        </a>
+      </span>
+    
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godu.ink/2019/05/25/Yahoo军规/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="God U">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/GodU.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="God U">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Yahoo军规</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-25T10:18:04+08:00">
+                2019-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Yahoo 前端性能优化军规</p>
+</blockquote>
+<p><em>本文介绍的是非常基础的传统前端优化策略</em></p>
+<h2 id="14-条常用优化规则"><a href="#14-条常用优化规则" class="headerlink" title="14 条常用优化规则"></a>14 条常用优化规则</h2><h3 id="减少-HTTP-请求"><a href="#减少-HTTP-请求" class="headerlink" title="减少 HTTP 请求"></a>减少 HTTP 请求</h3><ul>
+<li>合并文件：通过把尽量多的脚本文件放在一个文件中的方式来减少请求数，当然，css 文件也可以这样。</li>
+<li>CSS Sprites：减少图片请求数量的首选方式。把背景图片都整合到一张图片中，然后用 CSS 的 background-image 和 background-position 属性来定位要显示的部分。</li>
+<li>行内图片（Base64 编码）：用 data: URL 模式来把图片嵌入页面。把图像文件的内容直接写在了 HTML 文件中，这样做的好处是，节省了一个 HTTP 请求。坏处是浏览器不会缓存这种图像。</li>
+</ul>
+<a id="more"></a>
+<p><img src="../../../../images/2019/05/251000.jpg" alt="减少HTTP请求"></p>
+<h3 id="使用内容分发网络-CDN"><a href="#使用内容分发网络-CDN" class="headerlink" title="使用内容分发网络 CDN"></a>使用内容分发网络 CDN</h3><ul>
+<li>把内容部署在多个地理位置分散的服务器上能让用户更快地载入页面。</li>
+<li>典型地，选择用来发送内容的服务器是基于网络距离的衡量标准的。例如：选跳数（hop）最少的或者响应时间最快的服务器。</li>
+</ul>
+<h3 id="Expires-或-cache-Control"><a href="#Expires-或-cache-Control" class="headerlink" title="Expires 或 cache-Control"></a>Expires 或 cache-Control</h3><ul>
+<li>对于静态内容：设置文件头过期时间 Expires 的值为几个月或者“Never expire”</li>
+<li>对于动态内容：使用恰当的 cache-Control 文件头来帮助浏览器进行有条件的请求</li>
+</ul>
+<h3 id="Gzip-压缩"><a href="#Gzip-压缩" class="headerlink" title="Gzip 压缩"></a>Gzip 压缩</h3><p>从 HTTP/1.1 开始，web 客户端就有了支持压缩的 Accept-Encoding HTTP 请求头。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Accept-Encoding: gzip, deflate</span><br></pre></td></tr></table></figure>
+<p>如果 web 服务器看到这个请求头，它就会用客户端列出的一种方式来压缩响应。<br><img src="../../../../images/2019/05/251010.jpg" alt="Gzip压缩"></p>
+<h3 id="把样式表置于顶部"><a href="#把样式表置于顶部" class="headerlink" title="把样式表置于顶部"></a>把样式表置于顶部</h3><p>避免页面闪烁</p>
+<h3 id="把脚本放在底部"><a href="#把脚本放在底部" class="headerlink" title="把脚本放在底部"></a>把脚本放在底部</h3><p>可以使用 defer 和 async 属性，但为了避免兼容性问题，还是将 js 文件放置在底部较为合适</p>
+<h3 id="剔除重复脚本"><a href="#剔除重复脚本" class="headerlink" title="剔除重复脚本"></a>剔除重复脚本</h3><h3 id="避免使用-css-表达式"><a href="#避免使用-css-表达式" class="headerlink" title="避免使用 css 表达式"></a>避免使用 css 表达式</h3><p>IE5 及其以后版本支持在 CSS 中使用 expression，用来把 CSS 属性和 Javascript 脚本关联起来，这里的 CSS 属性可以是元素固有的属性，也可以是自定义属性。<br><img src="../../../../images/2019/05/251020.jpg" alt="css表达式"><br>计算频率极高，性能极低。</p>
+<h3 id="使用外部-js、css-文件"><a href="#使用外部-js、css-文件" class="headerlink" title="使用外部 js、css 文件"></a>使用外部 js、css 文件</h3><p>在样本或样式较少时，还是推荐直接写在页面中，避免文件系统的混乱。</p>
+<h3 id="压缩-JavaScript-和-CSS"><a href="#压缩-JavaScript-和-CSS" class="headerlink" title="压缩 JavaScript 和 CSS"></a>压缩 JavaScript 和 CSS</h3><p>在上线项目，进行生产环境部署时，对相关文件进行压缩，是线上版本最轻量。</p>
+<h3 id="减少-DNS-查找"><a href="#减少-DNS-查找" class="headerlink" title="减少 DNS 查找"></a>减少 DNS 查找</h3><ul>
+<li>域名系统 DNS 建立了主机名和 IP 地址间的映射。</li>
+<li>DNS 查找被缓存起来更高效，由用户的 ISP（网络服务提供商）或者本地网络存在一个特殊的缓存服务器上，但还可以缓存在个人用户的计算机上。</li>
+<li>只要浏览器在自己的 cache 里还保留着这条记录，它就不会向操作系统查询 DNS。</li>
+</ul>
+<h3 id="避免重定向"><a href="#避免重定向" class="headerlink" title="避免重定向"></a>避免重定向</h3><p>在 HTTP 协议中，重定向用 301 和 302 状态码。</p>
+<ul>
+<li>301 是永久重定向</li>
+<li>302 是临时重定向</li>
+</ul>
+<p>用重定向来连接两个网站是最简单的，只需要少量的额外代码。虽然在这些时候使用重定向减少了开发人员的开发复杂度，但降低了用户体验。一种替代方案是用 Alias 和 mod_rewrite，前提是两个代码路径都在相同的服务器上。如果是因为域名变化而使用了重定向，就可以创建一条 CNAME 指令。<br><img src="../../../../images/2019/05/251030.jpg" alt="重定向"></p>
+<h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><ul>
+<li>实体标签 Entity Tag，服务器和浏览器用来决定浏览器缓存中组件与源服务器中的组件是否匹配的一种机制。即用一个字符串来标识一个资源的版本。</li>
+<li>添加 ETags 可以提供一种实体验证机制，比最后修改日期更加灵活。</li>
+</ul>
+<h3 id="使用-Ajax-缓存"><a href="#使用-Ajax-缓存" class="headerlink" title="使用 Ajax 缓存"></a>使用 Ajax 缓存</h3><p>异步 JavaScript 和 XML<br>我们进行一次 AJAX 请求后，把资源进行缓存。</p>
+<h2 id="YSlow"><a href="#YSlow" class="headerlink" title="YSlow"></a>YSlow</h2><ul>
+<li>YSlow 可以对网站的页面进行分析，并告诉你为了提高网站性能，如何基于某些规则而进行优化。</li>
+<li>YSlow 可以分析任何网站，并为每一个规则产生一个整体报告，如果页面可以进行优化，则 YSlow 会列出具体的修改意见。</li>
+<li>YSlow 针对不同的浏览器插件也是不同的。可以查阅<a href="http://yslow.org/" target="_blank" rel="noopener">官网</a>的完全文档。</li>
+<li>点击 YSlow 按钮，启动插件，点击 Run Test 测试当前页面。在新弹出的界面中按照重要性显示了影响此页面效率的元素，其中 A 类评分为最高，F 为最低。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="God U 微信扫一扫，向我赞赏">
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="God U 支付宝扫一扫，向我赞赏">
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/24/LeetCode62-UniquePaths/" rel="next" title="LeetCode62.UniquePaths">
+                <i class="fa fa-chevron-left"></i> LeetCode62.UniquePaths
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/27/RestfulAPI/" rel="prev" title="RestfulAPI">
+                RestfulAPI <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <div class="disqus-loading">
+          <strong>Disqus 加载中...</strong>
+          <p>如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+
+
+
+  
+
+    
+      <script type="text/javascript">
+        window.DISQUS = null;
+        new DisqusJS({
+          shortname: 'godu-ink',
+          siteName: 'God U',
+          identifier: '2019/05/25/Yahoo军规/',
+          url: 'http://godu.ink/2019/05/25/Yahoo军规/',
+          api: 'https://disqus.skk.moe/disqus/',
+          apikey: 'uy3AY3XgzwB0r71jtFKz16BKewHozsDOprnxUjZqtiZ0zaTnh2Ckv5bqSyzkLfpc',
+          admin: 'GodU',
+          adminLabel: '服务生',
+        });
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/card.jpg" alt="God U">
+            
+              <p class="site-author-name" itemprop="name">God U</p>
+              <p class="site-description motion-element" itemprop="description">你能抓到我么？</p>
+          </div>
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/JasonLin1230" target="_blank" title="GitHub" data-balloon="GitHub" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/jasonlin1230" target="_blank" title="Twitter" data-balloon="Twitter" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://jq.qq.com/?_wv=1027&k=5MuPeGu" target="_blank" title="QQ 群" data-balloon="QQ 群" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-qq"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/u/5723823690" target="_blank" title="Weibo" data-balloon="Weibo" data-balloon-pos="up">
+                    
+                      <i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+            
+
+          </nav>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.png" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#14-条常用优化规则"><span class="nav-number">1.</span> <span class="nav-text">14 条常用优化规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#减少-HTTP-请求"><span class="nav-number">1.1.</span> <span class="nav-text">减少 HTTP 请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用内容分发网络-CDN"><span class="nav-number">1.2.</span> <span class="nav-text">使用内容分发网络 CDN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires-或-cache-Control"><span class="nav-number">1.3.</span> <span class="nav-text">Expires 或 cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gzip-压缩"><span class="nav-number">1.4.</span> <span class="nav-text">Gzip 压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把样式表置于顶部"><span class="nav-number">1.5.</span> <span class="nav-text">把样式表置于顶部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把脚本放在底部"><span class="nav-number">1.6.</span> <span class="nav-text">把脚本放在底部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剔除重复脚本"><span class="nav-number">1.7.</span> <span class="nav-text">剔除重复脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免使用-css-表达式"><span class="nav-number">1.8.</span> <span class="nav-text">避免使用 css 表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用外部-js、css-文件"><span class="nav-number">1.9.</span> <span class="nav-text">使用外部 js、css 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩-JavaScript-和-CSS"><span class="nav-number">1.10.</span> <span class="nav-text">压缩 JavaScript 和 CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少-DNS-查找"><span class="nav-number">1.11.</span> <span class="nav-text">减少 DNS 查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免重定向"><span class="nav-number">1.12.</span> <span class="nav-text">避免重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ETag"><span class="nav-number">1.13.</span> <span class="nav-text">ETag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Ajax-缓存"><span class="nav-number">1.14.</span> <span class="nav-text">使用 Ajax 缓存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YSlow"><span class="nav-number">2.</span> <span class="nav-text">YSlow</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      
+      <div class="footer-inner">
+        <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
+<p>托管于<a href="https://github.com/" target="_blank" rel="nofollow"> GitHub</a>. <a href="https://www.upyun.com/" target="_blank" rel="nofollow">又拍云</a> 提供 CDN 服务. <a href="http://www.google.com/analytics/" target="_blank" rel="nofollow">Google Analytics </a>提供网站统计服务. <a href="https://www.aliyun.com/" target="_blank" rel="nofollow">Aliyun </a>提供 DNS 解析服务.</p>
+
+<p>© <span itemprop="copyrightYear">2019</span> God U.
+    由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
+    Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.4.
+    <a href="/sitemap.xml" target="_blank">站点地图</a>.
+    冀ICP备19014049号.
+</p>
+<p>Made with <i class="fa fa-heart throb" style="color: #d43f57;"></i> by <span class="author" itemprop="copyrightHolder">God U</span>. </p>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    <canvas id="evanyou"></canvas>
+
+    
+
+  </div>
+
+  <script type="text/javascript" src="/js/sagiri.min.js?v=0.0.4"></script>
+
+  
+
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
