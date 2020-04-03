@@ -120,7 +120,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Nginx中server块配置">
 <meta property="og:url" content="http://godu.ink/2020/03/11/关于Nginx中server块配置/index.html">
-<meta property="og:site_name" content="God U">
+<meta property="og:site_name" content="U">
 <meta property="og:description" content="最近给服务器配置的东西有点多…这里就给Nginx中server模块的配置做个小小总结叭">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-03-18T09:19:46.534Z">
@@ -143,7 +143,7 @@
     since: '5/2/2019 11:30:00',
     onlineAPI: '',
     site: {
-      title: 'God U',
+      title: 'U',
       subtitle: '',
       author: 'God U'
     },
@@ -191,7 +191,7 @@
 
 
 
-  <title>关于Nginx中server块配置 | God U</title>
+  <title>关于Nginx中server块配置 | U</title>
   
 
 
@@ -310,10 +310,10 @@
         <span class="logo-line-before"><i></i></span>
         <div class="site-title">
           <div id="animate" class="animate">
-            <span>G</span><span>o</span><span>d</span><span> </span><span>U</span>
+            <span>U</span>
           </div>
           <div id="guide" class="guide">
-            <span>G</span><span>o</span><span>d</span><span> </span><span>U</span>
+            <span>U</span>
           </div>
         </div>
         <span class="logo-line-after"><i></i></span>
@@ -349,26 +349,137 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="post posts-expand">
+  <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-date">
+			<div class="post-month">03月</div>
+			<div class="post-day">11</div>
+	</div>
+  
+  <div class="post-badge">
     
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/服务端/" itemprop="url" rel="index">
+          <span itemprop="name">服务端</span>
+        </a>
+      </span>
     
-    <div class="post-block page">
+  </div>
+  
+
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://godu.ink/2020/03/11/关于Nginx中server块配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="God U">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/GodU.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="U">
+    </span>
+
+    
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">关于Nginx中server块配置</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>最近给服务器配置的东西有点多…<br>这里就给Nginx中server模块的配置做个小小总结叭</p>
+          <h2 class="post-title" itemprop="name headline">关于Nginx中server块配置</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-11T23:38:39+08:00">
+                2020-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务端/" itemprop="url" rel="index">
+                    <span itemprop="name">服务端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/03/11/关于Nginx中server块配置/" class="leancloud_visitors" data-flag-title="关于Nginx中server块配置">
+               <span class="post-meta-divider">•</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近给服务器配置的东西有点多…<br>这里就给Nginx中server模块的配置做个小小总结叭</p>
 <a id="more"></a>
 <h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>Nginx 是使用基于事件驱动架构，高度模块化、高性能、开源的一台服务器，可以作为HTTP 服务器发布网站，也可以作为反向代理服务器实现负载均衡、网络跨区访问等。(总得有句话简单介绍一下基础知识点吧）。</p>
 <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nginx -c /usr/local/nginx/conf/nginx.conf     #读取配置文件启动</span><br><span class="line">nginx -s reload                               #重新读取配置文件，优雅重启</span><br><span class="line">nginx -t                                      #检测配置文件是否有语法错误</span><br><span class="line">nginx -s reopen                               #重启Nginx</span><br></pre></td></tr></table></figure>
@@ -424,15 +535,93 @@
 <p>Nginx默认会解析ipv6，如果没有ipv6环境，可以显式关闭；<br>这里还可能存在另一个问题，就是域名在被解析之后会被缓存，并不是每一次都动态解析，这可能导致一些意料之外的事情发生<br>可以通过设置变量以及解析超时时间来解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">resolver 202.123.456.78 114.114.114.114 valid=10s ipv6=off;</span><br><span class="line">resolver_timeout 10s;</span><br><span class="line">location / &#123;</span><br><span class="line">    ...</span><br><span class="line">    set $backend api.example.com;</span><br><span class="line">    proxy_pass http://$backend;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>以上，祝你玩得愉快~</p>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+      <div class="post-share">分享到：</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赞赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="God U 微信扫一扫，向我赞赏">
+        <p>微信扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="God U 支付宝扫一扫，向我赞赏">
+        <p>支付宝扫一扫，向我赞赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/13/LeetCode39-40-46-47-78-90/" rel="next" title="LeetCode39,40,46,47,78,90-Backtracking">
+                <i class="fa fa-chevron-left"></i> LeetCode39,40,46,47,78,90-Backtracking
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -465,7 +654,7 @@
         window.DISQUS = null;
         new DisqusJS({
           shortname: 'godu-ink',
-          siteName: 'God U',
+          siteName: 'U',
           identifier: '2020/03/11/关于Nginx中server块配置/',
           url: 'http://godu.ink/2020/03/11/关于Nginx中server块配置/',
           api: 'https://disqus.skk.moe/disqus/',
@@ -658,7 +847,7 @@
         <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
 <p>托管于<a href="https://github.com/" target="_blank" rel="nofollow"> GitHub</a>. <a href="https://www.upyun.com/" target="_blank" rel="nofollow">又拍云</a> 提供 CDN 服务. <a href="http://www.google.com/analytics/" target="_blank" rel="nofollow">Google Analytics </a>提供网站统计服务. <a href="https://www.aliyun.com/" target="_blank" rel="nofollow">Aliyun </a>提供 DNS 解析服务.</p>
 
-<p>© <span itemprop="copyrightYear">2020</span> God U.
+<p>© <span itemprop="copyrightYear">2020</span> U.
     由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
     Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.4.
     <a href="/sitemap.xml" target="_blank">站点地图</a>.
