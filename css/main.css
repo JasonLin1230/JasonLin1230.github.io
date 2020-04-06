@@ -433,16 +433,6 @@ th {
 td {
   border-bottom-width: 1px;
 }
-html {
-  filter: grayscale(100%);
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  filter: url("data:image/svg+xml;utf-8,#greyscale");
-  filter: #808080;
-  -webkit-filter: grayscale(1);
-}
 html,
 body {
   height: 100%;
@@ -1934,7 +1924,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6c34e2;
+  background: #98a45d;
 }
 .links-of-blogroll {
   font-size: 13px;
