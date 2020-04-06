@@ -104,7 +104,7 @@
 
 
 
-  <meta name="keywords" content="Nginx,">
+  <meta name="keywords" content="安全,">
 
 
 
@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="最近给服务器配置的东西有点多…这里就给Nginx中server模块的配置做个小小总结叭">
-<meta name="keywords" content="Nginx">
+<meta name="description" content="安全反馈了我们系统存在的一些问题虽然不是我的代码导致，但还是趁机学习了一下   主要是 “XML实体引用约束不足” 与 “跨站历史操作”">
+<meta name="keywords" content="安全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于Nginx中server块配置">
-<meta property="og:url" content="http://godu.ink/2020/03/11/关于Nginx中server块配置/index.html">
+<meta property="og:title" content="XXE与CSHM防范">
+<meta property="og:url" content="http://godu.ink/2020/04/06/XXE与CSHM/index.html">
 <meta property="og:site_name" content="U">
-<meta property="og:description" content="最近给服务器配置的东西有点多…这里就给Nginx中server模块的配置做个小小总结叭">
+<meta property="og:description" content="安全反馈了我们系统存在的一些问题虽然不是我的代码导致，但还是趁机学习了一下   主要是 “XML实体引用约束不足” 与 “跨站历史操作”">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-18T09:19:46.534Z">
+<meta property="og:updated_time" content="2020-04-06T09:56:26.256Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于Nginx中server块配置">
-<meta name="twitter:description" content="最近给服务器配置的东西有点多…这里就给Nginx中server模块的配置做个小小总结叭">
+<meta name="twitter:title" content="XXE与CSHM防范">
+<meta name="twitter:description" content="安全反馈了我们系统存在的一些问题虽然不是我的代码导致，但还是趁机学习了一下   主要是 “XML实体引用约束不足” 与 “跨站历史操作”">
 
 
 
@@ -185,13 +185,13 @@
 
 
 
-  <link rel="canonical" href="http://godu.ink/2020/03/11/关于Nginx中server块配置/">
+  <link rel="canonical" href="http://godu.ink/2020/04/06/XXE与CSHM/">
 
 
 
 
 
-  <title>关于Nginx中server块配置 | U</title>
+  <title>XXE与CSHM防范 | U</title>
   
 
 
@@ -363,8 +363,8 @@
   
   
   <div class="post-date">
-			<div class="post-month">03月</div>
-			<div class="post-day">11</div>
+			<div class="post-month">04月</div>
+			<div class="post-day">06</div>
 	</div>
   
   <div class="post-badge">
@@ -379,7 +379,7 @@
   
 
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://godu.ink/2020/03/11/关于Nginx中server块配置/">
+    <link itemprop="mainEntityOfPage" href="http://godu.ink/2020/04/06/XXE与CSHM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="U">
@@ -396,7 +396,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">关于Nginx中server块配置</h2>
+          <h2 class="post-title" itemprop="name headline">XXE与CSHM防范</h2>
         
 
         <div class="post-meta">
@@ -408,8 +408,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-11T23:38:39+08:00">
-                2020-03-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T18:40:08+08:00">
+                2020-04-06
               </time>
             
 
@@ -448,7 +448,7 @@
 
           
           
-             <span id="/2020/03/11/关于Nginx中server块配置/" class="leancloud_visitors" data-flag-title="关于Nginx中server块配置">
+             <span id="/2020/04/06/XXE与CSHM/" class="leancloud_visitors" data-flag-title="XXE与CSHM防范">
                <span class="post-meta-divider">•</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -479,61 +479,43 @@
       
 
       
-        <p>最近给服务器配置的东西有点多…<br>这里就给Nginx中server模块的配置做个小小总结叭</p>
+        <p>安全反馈了我们系统存在的一些问题<br>虽然不是我的代码导致，但还是趁机学习了一下  </p>
+<p>主要是 <strong>“XML实体引用约束不足”</strong> 与 <strong>“跨站历史操作”</strong></p>
 <a id="more"></a>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>Nginx 是使用基于事件驱动架构，高度模块化、高性能、开源的一台服务器，可以作为HTTP 服务器发布网站，也可以作为反向代理服务器实现负载均衡、网络跨区访问等。(总得有句话简单介绍一下基础知识点吧）。</p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nginx -c /usr/local/nginx/conf/nginx.conf     #读取配置文件启动</span><br><span class="line">nginx -s reload                               #重新读取配置文件，优雅重启</span><br><span class="line">nginx -t                                      #检测配置文件是否有语法错误</span><br><span class="line">nginx -s reopen                               #重启Nginx</span><br></pre></td></tr></table></figure>
-<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>location配置是为了与客户端请求的URI相匹配，从而分发到对应的服务器  </p>
-<h4 id="location"><a href="#location" class="headerlink" title="location"></a>location</h4><ul>
-<li>Nginx一般会在server中的多个location中选取匹配度最高的一个</li>
-<li>匹配顺序是：<br>带有“=“的精确匹配<br>没有修饰符的精确匹配<br>带有“^~”修饰符的前缀匹配<br>带有“~” 或“~*” 修饰符的正则顺序匹配<br>不带任何修饰符的前缀匹配<br>通用匹配</li>
-<li>修饰符类型有：<br>「=」 修饰符：要求路径完全匹配<br>「~」 修饰符：区分大小写的正则匹配<br>「~*」不区分大小写的正则匹配<br>…  </li>
-</ul>
-<h4 id="proxy-pass中的"><a href="#proxy-pass中的" class="headerlink" title="proxy_pass中的/"></a>proxy_pass中的/</h4><p>举例说明：<br>下面四种情况分别访问<a href="http://localhost/proxy/test.html" target="_blank" rel="noopener">http://localhost/proxy/test.html</a><br>配置均类似于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location  /proxy/ &#123;</span><br><span class="line">    proxy_pass 差异在这里;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>差异在于proxy_pass后面  </p>
-<table>
-<thead>
-<tr>
-<th>配置</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://22.5.88:88:82" target="_blank" rel="noopener">http://22.5.88:88:82</a></td>
-<td><a href="http://22.5.88:88:82/proxy/test.html" target="_blank" rel="noopener">http://22.5.88:88:82/proxy/test.html</a></td>
-</tr>
-<tr>
-<td><a href="http://22.5.88:88:82/" target="_blank" rel="noopener">http://22.5.88:88:82/</a></td>
-<td><a href="http://22.5.88:88:82/test.html" target="_blank" rel="noopener">http://22.5.88:88:82/test.html</a></td>
-</tr>
-<tr>
-<td><a href="http://22.5.88:88:82/abc" target="_blank" rel="noopener">http://22.5.88:88:82/abc</a></td>
-<td><a href="http://22.5.88:88:82/abctest.html" target="_blank" rel="noopener">http://22.5.88:88:82/abctest.html</a></td>
-</tr>
-<tr>
-<td><a href="http://22.5.88:88:82/abc/" target="_blank" rel="noopener">http://22.5.88:88:82/abc/</a></td>
-<td><a href="http://22.5.88:88:82/abc/test.html" target="_blank" rel="noopener">http://22.5.88:88:82/abc/test.html</a></td>
-</tr>
-</tbody>
-</table>
-<h4 id="正则与URI"><a href="#正则与URI" class="headerlink" title="正则与URI"></a>正则与URI</h4><p>值得一提的是，在使用正则表达式来匹配路径时，proxy_pass不能配置URI<br>proxy_pass配置URI或者URL的区别在于，nginx在转发后是否保留location中路径部分，举个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location /test &#123;</span><br><span class="line"></span><br><span class="line">  配置1,  proxy_pass  https://127.0.0.1:8080</span><br><span class="line">  配置2,  proxy_pass  https://127.0.0.1:8080/abc</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果请求<a href="https://test.com/test/XXX" target="_blank" rel="noopener">https://test.com/test/XXX</a><br>配置1使用URL，那么请求就会转发到<a href="https://127.0.0.1:8080/test/XXX" target="_blank" rel="noopener">https://127.0.0.1:8080/test/XXX</a><br>配置2使用URI，那么请求就会转发到<a href="https://127.0.0.1:8080/abc/XXX，注意这里没有保留/test" target="_blank" rel="noopener">https://127.0.0.1:8080/abc/XXX，注意这里没有保留/test</a></p>
-<p>但是<label style="color:red"><strong>当location为正则表达式式，proxy_pass不能使用URI</strong></label><br>否则会提示”proxy_pass cannot have URI part in location given by regular expression…”<br>解决方法是使用rewrite，举个栗子，使用正则表达式的配置匹配/test后面有数字的路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location ~ /test\d+ &#123;</span><br><span class="line"></span><br><span class="line">  rewrite ^ /abc$1 break;</span><br><span class="line">  proxy_pass  https://127.0.0.1:8080</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>意思就是重写整个URL, 在前面添加/abc，然后再加上剩余的部分<br>rewrite 最后一项flag参数解释是：</p>
+<h2 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h2><blockquote>
+<p>XML External Entity</p>
+</blockquote>
+<p>原因是咱用了鹅厂某个变更回调的接口，而这个回调的数据是XML格式的（为什么不是JSON？<br>于是代码中简单得使用了DocumentBuilder的parse方法来解析XML，导致了安全问题</p>
+<h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><p>Extensible Markup Language，提供了一种标准的、可扩展的数据交换格式<br>DTD（文档类型定义）是用来定义 XML 文档的合法构建模块<br>DTD有两种使用方式：</p>
 <ul>
-<li>last        本条规则匹配完成后继续向下匹配新的location规则</li>
-<li>break        本条规则匹配完成后终止，不在匹配任何规则</li>
-<li>redirect    返回302临时重定向</li>
-<li>permanent    返回301永久重定向</li>
+<li>内部DTD：即DTD的声明和属性都在 XML 中</li>
+<li>外部DTD：即 XML 中使用的 DTD 引用了一个外部的单独的DTD文件</li>
 </ul>
-<h4 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h4><p><label style="color:red"><strong>当proxy_pass配置不指定端口时，默认转发到匹配的端口，即listen的端口</strong></label><br>一般情况下建议指明proxy_pass端口，或者选择下面一种配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">proxy_set_header Host $host:$server_port;   #Nigix监听的端口</span><br><span class="line">proxy_set_header Host $host:$proxy_port;    #服务器真正访问的端口</span><br></pre></td></tr></table></figure></p>
-<h4 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h4><p>server中默认不配置这个参数的话，nginx转发的请求header里不会有Host字段，而服务器一般通过Host值来判断防盗链之类的。<br>也就说不配置的情况下，后端服务器得到是Nginx的主机名，并非客户端主机名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_set_header Host $http_host;</span><br></pre></td></tr></table></figure></p>
-<p>这样配置是将原http请求的Header中的Host字段也放到转发的请求里，如果Host请求头部没有出现在请求头中，一般会用$host代替$http_host变量，避免不被重写。  </p>
-<h4 id="X-Forward-For"><a href="#X-Forward-For" class="headerlink" title="X-Forward-For"></a>X-Forward-For</h4><p>X_Forward_For字段表示该条http请求由谁发起。<br>如果Nginx不重写该请求头，那么后端真实服务器在处理时会认为所有的请求都由Nginx发起，那么如果后端有防攻击策略的话，Nginx可能被封掉，<strong>同理可得：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_set_header X-Forward-For $remote_addr;</span><br></pre></td></tr></table></figure></p>
-<h4 id="resolver"><a href="#resolver" class="headerlink" title="resolver"></a>resolver</h4><p>当proxy_pass使用域名，并且服务器没有配置域名解析时，需要在Nginx配置中使用resolver<br>resolver中配置DNS服务器的IP以及一些其他参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resolver 202.123.456.78 114.114.114.114 valid=10s ipv6=off;</span><br></pre></td></tr></table></figure></p>
-<p>Nginx默认会解析ipv6，如果没有ipv6环境，可以显式关闭；<br>这里还可能存在另一个问题，就是域名在被解析之后会被缓存，并不是每一次都动态解析，这可能导致一些意料之外的事情发生<br>可以通过设置变量以及解析超时时间来解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">resolver 202.123.456.78 114.114.114.114 valid=10s ipv6=off;</span><br><span class="line">resolver_timeout 10s;</span><br><span class="line">location / &#123;</span><br><span class="line">    ...</span><br><span class="line">    set $backend api.example.com;</span><br><span class="line">    proxy_pass http://$backend;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上，祝你玩得愉快~</p>
+<h3 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h3><ol>
+<li>XML组件默认没有禁用外部实体引用，XML 实体可动态包含来自给定资源的数据。</li>
+<li>XML 解析器无法预防和限制外部实体进行解析，这会使解析器暴露在 XML External Entities 攻击之下。</li>
+<li>当动态构建XML时，XML 解析器可以访问由用户输入的 URI 所指定的资源，因此可能导致读取任意文件；执行系统命令；探测内网端口；攻击内网网站等  </li>
+</ol>
+<p>因此外界攻击者可以通过模拟回调通知，在回调通知中引入不安全的XML来达到自己的目的</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>事实上，当前的SpringBoot版本已经修复了这个漏洞，但如果使用更早期的版本或其他框架，可能遭受风险。  </p>
+<p>所以，咱们需要做的就是禁用DTD以及外部实体引用</p>
+<ol>
+<li><p>JAVA</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 完全禁用DTD</span><br><span class="line">DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span><br><span class="line">dbf.setFeature(&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;, true);</span><br><span class="line"></span><br><span class="line">// 不包括外部一般实体</span><br><span class="line">dbf.setFeature(&quot;http://xml.org/sax/features/external-general-entities&quot;, false);</span><br><span class="line">// 不包含外部参数实体或外部DTD</span><br><span class="line">dbf.setFeature(&quot;http://xml.org/sax/features/external-parameter-entities&quot;, false);</span><br><span class="line">// 忽略外部DTD</span><br><span class="line">dbf.setFeature(&quot;http://apache.org/xml/features/nonvalidating/load-external-dtd&quot;, false);</span><br><span class="line">dbf.setExpandEntityReferences(false);</span><br></pre></td></tr></table></figure>
+<p> 最好再加上 <strong>异常捕获</strong> ，以免一些意外发生</p>
+</li>
+<li><p>PHP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">libxml_disable_entity_loader(true);</span><br><span class="line">$xml = simplexml_load_string($xmlContent);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from lxml import etree</span><br><span class="line">xmlData = etree.parse(xmlContent,etree.XMLParser(resolve_entities=False))</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="跨站历史操作"><a href="#跨站历史操作" class="headerlink" title="跨站历史操作"></a>跨站历史操作</h2><blockquote>
+<p>Cross Site History Manipulation</p>
+</blockquote>
+<h3 id="为什么-1"><a href="#为什么-1" class="headerlink" title="为什么"></a>为什么</h3><p>现代浏览器会将用户的浏览历史记录作为先前访问过的 URL 的堆栈公开给本地 JavaScript<br>在某些情况下，利用History对象，攻击者即可以发现应用程序在服务器端执行的某些检查的结果，例如是否登录  </p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>在重定向的时候，加入一个随机值参数，像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SecureRandom random = SecureRandom.getInstance(&quot;SHA1PRNG&quot;);</span><br><span class="line">int securityR = random.nextInt();</span><br><span class="line">If (!unAuthenticated)</span><br><span class="line">	response.sendRedirect(&quot;Login.jsp?securityR=&quot; +securityR );</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -584,7 +566,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+            <a href="/tags/安全/" rel="tag"># 安全</a>
           
         </div>
       
@@ -597,8 +579,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/13/LeetCode39-40-46-47-78-90/" rel="next" title="LeetCode39,40,46,47,78,90-Backtracking">
-                <i class="fa fa-chevron-left"></i> LeetCode39,40,46,47,78,90-Backtracking
+              <a href="/2020/03/11/关于Nginx中server块配置/" rel="next" title="关于Nginx中server块配置">
+                <i class="fa fa-chevron-left"></i> 关于Nginx中server块配置
               </a>
             
           </div>
@@ -606,10 +588,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/06/XXE与CSHM/" rel="prev" title="XXE与CSHM防范">
-                XXE与CSHM防范 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -659,8 +637,8 @@
         new DisqusJS({
           shortname: 'godu-ink',
           siteName: 'U',
-          identifier: '2020/03/11/关于Nginx中server块配置/',
-          url: 'http://godu.ink/2020/03/11/关于Nginx中server块配置/',
+          identifier: '2020/04/06/XXE与CSHM/',
+          url: 'http://godu.ink/2020/04/06/XXE与CSHM/',
           api: 'https://disqus.skk.moe/disqus/',
           apikey: 'uy3AY3XgzwB0r71jtFKz16BKewHozsDOprnxUjZqtiZ0zaTnh2Ckv5bqSyzkLfpc',
           admin: 'GodU',
@@ -827,7 +805,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx"><span class="nav-number">1.</span> <span class="nav-text">Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文"><span class="nav-number">1.2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#location"><span class="nav-number">1.2.1.</span> <span class="nav-text">location</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#proxy-pass中的"><span class="nav-number">1.2.2.</span> <span class="nav-text">proxy_pass中的/</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正则与URI"><span class="nav-number">1.2.3.</span> <span class="nav-text">正则与URI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#端口"><span class="nav-number">1.2.4.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Host"><span class="nav-number">1.2.5.</span> <span class="nav-text">Host</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Forward-For"><span class="nav-number">1.2.6.</span> <span class="nav-text">X-Forward-For</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resolver"><span class="nav-number">1.2.7.</span> <span class="nav-text">resolver</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XXE"><span class="nav-number">1.</span> <span class="nav-text">XXE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XML"><span class="nav-number">1.1.</span> <span class="nav-text">XML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么"><span class="nav-number">1.2.</span> <span class="nav-text">为什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">1.3.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨站历史操作"><span class="nav-number">2.</span> <span class="nav-text">跨站历史操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么-1"><span class="nav-number">2.1.</span> <span class="nav-text">为什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">2.2.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
             
 
           </div>
