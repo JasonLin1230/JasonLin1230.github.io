@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="U">
 <meta property="og:description" content="$(function () {     $.ajax({         url: &apos;https://api.i-meto.com/meting/api?server=netease&amp;type=song&amp;id=1357963386&apos;,         success: function (list) {             var ap = new APlayer({">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-23T07:59:53.176Z">
+<meta property="og:updated_time" content="2020-06-07T05:36:55.016Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《致我们暖暖的小时光》">
 <meta name="twitter:description" content="$(function () {     $.ajax({         url: &apos;https://api.i-meto.com/meting/api?server=netease&amp;type=song&amp;id=1357963386&apos;,         success: function (list) {             var ap = new APlayer({">
@@ -483,7 +483,7 @@ $(function () {
                 element: document.getElementById('aplayer-nuannuan'),
                 showlrc: 3,
                 theme: '#8d7561',
-                music: JSON.parse(list)[0]
+                music: list[0]
             });
             window.aplayers || (window.aplayers = []);
             window.aplayers.push(ap);
@@ -733,7 +733,7 @@ $(function () {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
