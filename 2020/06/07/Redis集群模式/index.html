@@ -96,7 +96,7 @@
 
 
 
-  <meta name="keywords" content="GodU,U,JasonLin,AboutU">
+  <meta name="keywords" content="Redis,">
 
 
 
@@ -107,18 +107,17 @@
 
 
 
-<meta name="description" content="God U&apos;s blog | 前端萌新 | 开源">
-<meta name="keywords" content="God U,blog">
+<meta name="keywords" content="Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis集群模式">
 <meta property="og:url" content="http://godu.ink/2020/06/07/Redis集群模式/index.html">
 <meta property="og:site_name" content="U">
-<meta property="og:description" content="God U&apos;s blog | 前端萌新 | 开源">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-07T05:04:36.420Z">
+<meta property="og:image" content="http://godu.ink/images/2020/06/redis-cluster.jpg">
+<meta property="og:updated_time" content="2020-06-07T14:37:44.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis集群模式">
-<meta name="twitter:description" content="God U&apos;s blog | 前端萌新 | 开源">
+<meta name="twitter:image" content="http://godu.ink/images/2020/06/redis-cluster.jpg">
 
 
 
@@ -128,7 +127,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '0.0.4',
-    sidebar: {"position":"right","display":"always","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":52,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -260,12 +259,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-留言板">
+        <li class="menu-item menu-item-留言">
           <a href="/message/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br>
             
-            留言板
+            留言
           </a>
         </li>
       
@@ -359,6 +358,16 @@
 			<div class="post-day">07</div>
 	</div>
   
+  <div class="post-badge">
+    
+      <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/服务端/" itemprop="url" rel="index">
+          <span itemprop="name">服务端</span>
+        </a>
+      </span>
+    
+  </div>
+  
 
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://godu.ink/2020/06/07/Redis集群模式/">
@@ -401,6 +410,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">•</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务端/" itemprop="url" rel="index">
+                    <span itemprop="name">服务端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -439,7 +470,72 @@
       
 
       
-        
+        <p><img src="../../../../images/2020/06/redis-cluster.jpg" alt="redis-cluster"></p>
+<a id="more"></a>
+<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>Redis集群模式可以相对主从模式、哨兵模式而言  </p>
+<ul>
+<li>主从模式：类似于Mysql的主从复制，解决读写分离和数据备份，但无法自动故障转移、动态扩容</li>
+<li>哨兵模式：可以实现主从切换，但依旧无法动态扩容</li>
+<li>集群模式：闪亮登场，无中心结构、数据分片、内置高可用</li>
+</ul>
+<h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><p>Redis单实例存在单点，容量有限，流量压力上限等问题<br>因此为了降低运维成本，提高系统的扩展性和可用性，集群模式是个非常棒的选择。</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><h3 id="数据分区"><a href="#数据分区" class="headerlink" title="数据分区"></a>数据分区</h3><h4 id="1-随机"><a href="#1-随机" class="headerlink" title="1.随机"></a>1.随机</h4><p>随机选取一个存储并访问<br>一般结合 list，用于非顺序性要求的消息队列场景<br><strong>缺点：</strong>使用场景比较单一，并且持久化存在不可靠性（应该没人会用这种方式吧…</p>
+<h4 id="2-固定取模哈希"><a href="#2-固定取模哈希" class="headerlink" title="2.固定取模哈希"></a>2.固定取模哈希</h4><p>对于一个 key，首先计算 hash 值，然后对节点数取模打在对应的 master 节点上<br>举例：  </p>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th>Weight</th>
+<th>VirtualServer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Server2</td>
+<td>2</td>
+<td>2,3</td>
+</tr>
+<tr>
+<td>Server3</td>
+<td>3</td>
+<td>4,5,6</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtual_server_index = hash(key) % (total_virtual_weight)</span><br></pre></td></tr></table></figure>
+<p>例如某个key哈希后的值为10，则10%6=4，则会访问Server3<br><strong>缺点：</strong>由于是固定取模，在新增节点或者某个节点宕机情况下，所有数据都会重新洗牌，无法热迁移，流量可能会直接压到数据库上</p>
+<h4 id="3-一致性哈希"><a href="#3-一致性哈希" class="headerlink" title="3.一致性哈希"></a>3.一致性哈希</h4><p>一致性哈希算法最早在论文<a href="https://dl.acm.org/doi/pdf/10.1145/258533.258660" target="_blank" rel="noopener">《Consistent Hashing and Random Trees: Distributed Caching Protocols for Relieving Hot Spots on the World Wide Web》</a>中提起。<br>他将整个 hash 值空间按顺时针方向组织成一个虚拟的圆环，接下来将各个 master 节点进行 hash，确定每个节点在其哈希环上的位置。<br>对于某个key，根据它的哈希值确定在环上的位置，则顺时针方向的下一个节点就是它所在的位置。<br>如果增减节点，影响得知识该节点与上一个节点之间的数据。<br><strong>缺点：</strong>可能存在节点在环上分布不均导致访问热点，一般通过引入虚拟节点对一个真实节点计算多个虚拟节点哈希的方式，来达到数据均匀分布，负载均衡。</p>
+<h4 id="4-哈希槽"><a href="#4-哈希槽" class="headerlink" title="4.哈希槽"></a>4.哈希槽</h4><p>与一致性哈希相似，区别在于它预先分配好真实节点管理的哈希槽，而客户端通过API获取的是Key对应的哈希槽，而不是机器<br>当某个机器宕机之后，会将它管理的哈希槽转移到其他机器上  </p>
+<ul>
+<li>集群情况下，也会将客户端<strong>重定向</strong>到正确的节点:white_check_mark:</li>
+<li>非集群情况下，会直接报错给客户端，告诉它应该访问哪个节点</li>
+</ul>
+<h3 id="通信机制"><a href="#通信机制" class="headerlink" title="通信机制"></a>通信机制</h3><p>集群元数据（节点信息、故障信息、权限等）的维护主要有以下两种方式：</p>
+<h4 id="1-集中式"><a href="#1-集中式" class="headerlink" title="1.集中式"></a>1.集中式</h4><p>集中式是有专门的节点来管理元数据，例如zookeeper</p>
+<ul>
+<li>优点：时效性高</li>
+<li>缺点：元数据更新都在单个节点上，存在风险且压力较大</li>
+</ul>
+<h4 id="2-Gossip协议"><a href="#2-Gossip协议" class="headerlink" title="2.Gossip协议"></a>2.Gossip协议</h4><p><strong>Redis采用的就是这种方式</strong>，Gossip协议是所有节点都持有一份元数据，不同的节点如果出现了元数据的变更，就不断将元数据发送给其它的节点，让其它节点也进行元数据的变更</p>
+<ul>
+<li>优点：更新比较分散，降低压力</li>
+<li>缺点：时效性较差</li>
+</ul>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p>集群的高可用原理，与哨兵模式类似</p>
+<h4 id="1-判断节点宕机"><a href="#1-判断节点宕机" class="headerlink" title="1.判断节点宕机"></a>1.判断节点宕机</h4><p>在<code>cluster-node-timeout</code>内，某个节点一直没有返回<code>pong</code>，那么就被认为<code>pfail</code>（主观宕机）<br>如果一个节点认为某个节点<code>pfail</code>了，那么它会<code>ping</code>给其他节点，当超过半数的节点都认为<code>pfail</code>了，那么就是<code>fail</code>（客观宕机）</p>
+<h4 id="2-从节点过滤"><a href="#2-从节点过滤" class="headerlink" title="2.从节点过滤"></a>2.从节点过滤</h4><p>从节点选举为主节点之前，会先进行过滤，检查每个从节点与主节点断开连接的时间，如果超过了<code>cluster-node-timeout * cluster-slave-validity-factor</code>，那么就没有资格切换成主节点</p>
+<h4 id="3-从节点选举"><a href="#3-从节点选举" class="headerlink" title="3.从节点选举"></a>3.从节点选举</h4><p>每个从节点，都根据自己对主节点复制数据的 offset，来设置一个选举时间，offset 越大（复制数据越多）的从节点，选举时间越靠前，优先进行选<br>所有的主节点开始进行选举投票，当大部分主节点（N/2 + 1）都投票给了某个从节点，那么选举通过，那个从节点可以切换成主节点，开始执行主备切换，从节点切换为主节点</p>
+<h2 id="集群方案"><a href="#集群方案" class="headerlink" title="集群方案"></a>集群方案</h2><h2 id="搭建指南"><a href="#搭建指南" class="headerlink" title="搭建指南"></a>搭建指南</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://doocs.github.io/advanced-java/#/./docs/high-concurrency/redis-cluster" target="_blank" rel="noopener">Redis集群模式工作原理</a></li>
+<li><a href="https://www.cnblogs.com/wenwubp/p/12940147.html" target="_blank" rel="noopener">Redis为什么需要集群</a></li>
+<li><a href="https://www.zhihu.com/question/21419897/answer/89771396" target="_blank" rel="noopener">Redis集群方案应该怎么做</a></li>
+</ol>
+
       
     </div>
     
@@ -486,6 +582,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
       
 
       
@@ -610,8 +712,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -703,6 +814,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么"><span class="nav-number">1.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么"><span class="nav-number">2.</span> <span class="nav-text">为什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作原理"><span class="nav-number">3.</span> <span class="nav-text">工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据分区"><span class="nav-number">3.1.</span> <span class="nav-text">数据分区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-随机"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.随机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-固定取模哈希"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.固定取模哈希</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-一致性哈希"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.一致性哈希</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-哈希槽"><span class="nav-number">3.1.4.</span> <span class="nav-text">4.哈希槽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通信机制"><span class="nav-number">3.2.</span> <span class="nav-text">通信机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-集中式"><span class="nav-number">3.2.1.</span> <span class="nav-text">1.集中式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Gossip协议"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.Gossip协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高可用"><span class="nav-number">3.3.</span> <span class="nav-text">高可用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-判断节点宕机"><span class="nav-number">3.3.1.</span> <span class="nav-text">1.判断节点宕机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-从节点过滤"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.从节点过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从节点选举"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.从节点选举</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群方案"><span class="nav-number">4.</span> <span class="nav-text">集群方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建指南"><span class="nav-number">5.</span> <span class="nav-text">搭建指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
