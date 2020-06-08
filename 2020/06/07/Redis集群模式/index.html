@@ -114,7 +114,8 @@
 <meta property="og:site_name" content="U">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://godu.ink/images/2020/06/redis-cluster.jpg">
-<meta property="og:updated_time" content="2020-06-07T16:23:20.582Z">
+<meta property="og:image" content="http://godu.ink/images/2020/06/ConsistentHashing.webp">
+<meta property="og:updated_time" content="2020-06-08T16:01:02.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis集群模式">
 <meta name="twitter:image" content="http://godu.ink/images/2020/06/redis-cluster.jpg">
@@ -509,7 +510,7 @@
 </table>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtual_server_index = hash(key) % (total_virtual_weight)</span><br></pre></td></tr></table></figure>
 <p>例如某个key哈希后的值为10，则10%6=4，则会访问Server3<br><strong>缺点：</strong>由于是固定取模，在新增节点或者某个节点宕机情况下，所有数据都会重新洗牌，无法热迁移，流量可能会直接压到数据库上</p>
-<h4 id="3-一致性哈希"><a href="#3-一致性哈希" class="headerlink" title="3.一致性哈希"></a>3.一致性哈希</h4><p>一致性哈希算法最早在论文<a href="https://dl.acm.org/doi/pdf/10.1145/258533.258660" target="_blank" rel="noopener">《Consistent Hashing and Random Trees: Distributed Caching Protocols for Relieving Hot Spots on the World Wide Web》</a>中提起。<br>他将整个 hash 值空间按顺时针方向组织成一个虚拟的圆环，接下来将各个 master 节点进行 hash，确定每个节点在其哈希环上的位置。<br>对于某个key，根据它的哈希值确定在环上的位置，则顺时针方向的下一个节点就是它所在的位置。<br>如果增减节点，影响得知识该节点与上一个节点之间的数据。<br><strong>缺点：</strong>可能存在节点在环上分布不均导致访问热点，一般通过引入虚拟节点对一个真实节点计算多个虚拟节点哈希的方式，来达到数据均匀分布，负载均衡。</p>
+<h4 id="3-一致性哈希"><a href="#3-一致性哈希" class="headerlink" title="3.一致性哈希"></a>3.一致性哈希</h4><p>一致性哈希算法最早在论文<a href="https://dl.acm.org/doi/pdf/10.1145/258533.258660" target="_blank" rel="noopener">《Consistent Hashing and Random Trees: Distributed Caching Protocols for Relieving Hot Spots on the World Wide Web》</a>中提起。<br>他将整个 hash 值空间按顺时针方向组织成一个虚拟的圆环，接下来将各个 master 节点进行 hash，确定每个节点在其哈希环上的位置。<br>对于某个key，根据它的哈希值确定在环上的位置，则顺时针方向的下一个节点就是它所在的位置。<br>如果增减节点，影响得知识该节点与上一个节点之间的数据。<br><strong>缺点：</strong>可能存在节点在环上分布不均导致访问热点，一般通过引入虚拟节点对一个真实节点计算多个虚拟节点哈希的方式，来达到数据均匀分布，负载均衡。<br><img src="../../../../images/2020/06/ConsistentHashing.webp" alt="ConsistentHashing"></p>
 <h4 id="4-哈希槽"><a href="#4-哈希槽" class="headerlink" title="4.哈希槽"></a>4.哈希槽</h4><p>与一致性哈希相似，区别在于它预先分配好真实节点管理的哈希槽，而客户端通过API获取的是Key对应的哈希槽，而不是机器<br>当某个机器宕机之后，会将它管理的哈希槽转移到其他机器上  </p>
 <ul>
 <li>集群情况下，也会将客户端<strong>重定向</strong>到正确的节点:white_check_mark:</li>
@@ -530,7 +531,14 @@
 <h4 id="1-判断节点宕机"><a href="#1-判断节点宕机" class="headerlink" title="1.判断节点宕机"></a>1.判断节点宕机</h4><p>在<code>cluster-node-timeout</code>内，某个节点一直没有返回<code>pong</code>，那么就被认为<code>pfail</code>（主观宕机）<br>如果一个节点认为某个节点<code>pfail</code>了，那么它会<code>ping</code>给其他节点，当超过半数的节点都认为<code>pfail</code>了，那么就是<code>fail</code>（客观宕机）</p>
 <h4 id="2-从节点过滤"><a href="#2-从节点过滤" class="headerlink" title="2.从节点过滤"></a>2.从节点过滤</h4><p>从节点选举为主节点之前，会先进行过滤，检查每个从节点与主节点断开连接的时间，如果超过了<code>cluster-node-timeout * cluster-slave-validity-factor</code>，那么就没有资格切换成主节点</p>
 <h4 id="3-从节点选举"><a href="#3-从节点选举" class="headerlink" title="3.从节点选举"></a>3.从节点选举</h4><p>每个从节点，都根据自己对主节点复制数据的 offset，来设置一个选举时间，offset 越大（复制数据越多）的从节点，选举时间越靠前，优先进行选<br>所有的主节点开始进行选举投票，当大部分主节点（N/2 + 1）都投票给了某个从节点，那么选举通过，那个从节点可以切换成主节点，开始执行主备切换，从节点切换为主节点</p>
-<h2 id="集群方案"><a href="#集群方案" class="headerlink" title="集群方案"></a>集群方案</h2><p>占坑…</p>
+<h2 id="集群方案"><a href="#集群方案" class="headerlink" title="集群方案"></a>集群方案</h2><ol>
+<li><p>客户端分片<br>举例：Jedis<br>自主写分片算法，自主可控，但需要专业的开发运维人员维护，技术要求和维护成本高</p>
+</li>
+<li><p>代理分片<br>举例：Twemproxy<br>它处于客户端和服务器的中间，将客户端发来的请求，进行一定的处理后(如数据分片）转发给后端真正的Redis服务器，即proxy提供分片算法和redis服务入口，客户端不直接访问Redis，Redis-Twemporxy提供通知底层HA切换至proxy</p>
+</li>
+<li><p>官方集群<br>没有proxy，客户端可以直接连接任意一个节点，每个节点都和N-1个节点通信，集群的管理工具是redis-trib.rb脚本<br><strong>redis6.0后，官方也推出Redis Cluster的proxy方案</strong></p>
+</li>
+</ol>
 <h2 id="搭建指南"><a href="#搭建指南" class="headerlink" title="搭建指南"></a>搭建指南</h2><p>占坑…</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="https://doocs.github.io/advanced-java/#/./docs/high-concurrency/redis-cluster" target="_blank" rel="noopener">Redis集群模式工作原理</a></li>
