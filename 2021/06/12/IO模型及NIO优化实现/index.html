@@ -114,8 +114,9 @@
 <meta property="og:site_name" content="U">
 <meta property="og:description" content="网络通信中，最底层的就是操作系统内核中的网络IO模型了。随着技术的发展，网络模型衍生出了五种IO： 阻塞式IO、非阻塞式IO、IO复用、信号驱动式IO和异步IO  。每一种IO模型的出现，都是基于前一种IO模型的优化升级。">
 <meta property="og:image" content="http://godu.ink/images/2021/06/SimpleTCP.png">
+<meta property="og:image" content="http://godu.ink/images/2021/06/epoll.jpg">
 <meta property="article:published_time" content="2021-06-12T04:39:24.000Z">
-<meta property="article:modified_time" content="2021-06-15T18:17:26.787Z">
+<meta property="article:modified_time" content="2021-06-19T09:59:04.296Z">
 <meta property="article:author" content="U">
 <meta property="article:tag" content="底层">
 <meta name="twitter:card" content="summary">
@@ -495,10 +496,22 @@
 <li>read/write 阻塞：fork子进程，写入/返回数据</li>
 </ol>
 <h3 id="非阻塞式IO-NIO"><a href="#非阻塞式IO-NIO" class="headerlink" title="非阻塞式IO (NIO)"></a>非阻塞式IO (NIO)</h3><p>当系统调用时，数据没有就绪，那么线程会立即返回 <strong>（优点：不阻塞）</strong>，但是需要进行轮询检查 <strong>（缺点，占用大量CPU时间，CPU利用率低）</strong>，直到数据就绪，用户线程阻塞，内核开始从内核缓冲区复制数据到用户进程缓冲区，然后内核返回结果。</p>
-<h3 id="IO多路复用-Java的NIO"><a href="#IO多路复用-Java的NIO" class="headerlink" title="IO多路复用 (Java的NIO)"></a>IO多路复用 (Java的NIO)</h3><p>TODO…</p>
+<h3 id="IO多路复用-Java的NIO"><a href="#IO多路复用-Java的NIO" class="headerlink" title="IO多路复用 (Java的NIO)"></a>IO多路复用 (Java的NIO)</h3><p>Linux 提供了IO复用函数 select/poll/epoll，进程将一个或多个读操作通过系统调用函数，阻塞在函数操作上。这样，系统内核就可以帮我们侦测多个读操作是否处于就绪状态。一旦有就绪的，内核能够通知程序进行相应的IO系统调用。</p>
+<ol>
+<li><p>select() 函数：它的用途是，在超时时间内，监听用户感兴趣的文件描述符上的可读可写和异常事件的发生。Linux 操作系统的内核将所有外部设备都看做一个文件来操作，对一个文件的读写操作会调用内核提供的系统命令，返回一个文件描述符（fd）。<br>调用后 select() 函数会阻塞，直到有描述符就绪或者超时，函数返回。当 select 函数返回后，可以通过函数 FD_ISSET 遍历 fdset，来找到就绪的描述符。<br><strong>缺点：</strong>每次调用 select() 函数前，系统需要把一个fd从用户态拷贝到内核态，需要一定的性能开销。再有单个进程监视的 fd 数量默认是 1024，我们可以通过修改宏定义甚至重新编译内核的方式打破这一限制。但由于 fd_set 是基于数组实现的，在新增和删除 fd 时，数量过大会导致效率降低。</p>
+</li>
+<li><p>poll() 函数：poll()管理多个描述符也是通过轮询，根据描述符的状态进行处理，但 poll() 没有最大文件描述符数量的限制。<br><strong>缺点：</strong>包含大量文件描述符的数组被整体复制到用户态和内核的地址空间之间，而无论这些文件描述符是否就绪，开销很大。</p>
+</li>
+<li><p>epoll() 函数：Linux 在 2.6 内核版本中提供了一个 epoll 调用，epoll 使用事件驱动的方式代替轮询扫描 fd。<br>epoll 事先通过 epoll_ctl() 来注册一个文件描述符，将文件描述符存放到内核的一个事件表中，这个事件表是<strong>基于红黑树</strong>实现的，所以在大量IO请求的场景下，插入和删除的性能比 select/poll 的数组 fd_set 要好，而且不会受到 fd 数量的限制。<br><img src="../../../../images/2021/06/epoll.jpg" alt="epoll"></p>
+</li>
+</ol>
 <h3 id="信号驱动式IO"><a href="#信号驱动式IO" class="headerlink" title="信号驱动式IO"></a>信号驱动式IO</h3><p>信号驱动式 I/O 类似观察者模式，内核为观察者，信号回调则是通知。用户进程发起一个IO请求，会通过系统调用 sigaction 函数，给对应的套接字注册一个信号回调，<strong>此时不阻塞用户进程</strong>。当内核数据就绪时，内核就为该进程生成一个 SIGIO 信号，通过信号回调通知进程进行相关IO操作。</p>
 <p>信号驱动式IO相比于前三种模式，实现了在等待数据就绪时，进程不被阻塞可以继续工作，所以<strong>性能更佳</strong>。<br><strong>TCP中几乎没有使用该模式</strong>，因为 SIGIO 信号是一种 Unix 信号，信号没有附加信息，如果一个信号源有多种产生信号的原因，信号接收者就无法确定究竟发生了什么，而 <strong>TCP socket 生产的信号事件有七种之多</strong>。<br><strong>可以使用在UDP 通信上</strong>，因为 UDP 只有一个数据请求事件，如 NTP 服务器的应用。</p>
-<h3 id="异步IO-AIO"><a href="#异步IO-AIO" class="headerlink" title="异步IO (AIO)"></a>异步IO (AIO)</h3><h2 id="NIO优化实现"><a href="#NIO优化实现" class="headerlink" title="NIO优化实现"></a>NIO优化实现</h2><h3 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h3><h3 id="线程模型优化"><a href="#线程模型优化" class="headerlink" title="线程模型优化"></a>线程模型优化</h3><h3 id="Tomcat参数调优"><a href="#Tomcat参数调优" class="headerlink" title="Tomcat参数调优"></a>Tomcat参数调优</h3>
+<h3 id="异步IO-AIO"><a href="#异步IO-AIO" class="headerlink" title="异步IO (AIO)"></a>异步IO (AIO)</h3><p>信号驱动式IO虽然在等待数据就绪时，没有阻塞进程，但在被通知后进行的IO操作还是阻塞的，进程会等待数据从内核空间复制到用户空间中。而异步IO则是实现了<strong>真正的非阻塞IO</strong>。<br>当用户进程发起一个IO请求操作，系统会告知内核启动某个操作，并让内核在<strong>整个操作</strong>（包括数据就绪和将数据复制到用户空间）完成后通知进程。<br>由于程序的代码复杂度高，调试难度大，且支持异步IO操作系统比较少见，因此使用较少。</p>
+<h2 id="NIO优化实现"><a href="#NIO优化实现" class="headerlink" title="NIO优化实现"></a>NIO优化实现</h2><h3 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h3><p>零拷贝是一种避免多次内存复制的技术，用来优化读写IO操作。<br>在网络编程中，通常由read/write来完成一次IO读写操作。每一次IO读写都需要完成四次内存拷贝: I/O 设备 -&gt; 内核空间 -&gt; 用户空间 -&gt; 内核空间 -&gt; 其它 I/O 设备。</p>
+<p>Linux 内核中的 mmap 函数可以代替read/write的IO读写操作，实现用户空间和内核空间共享一个缓存数据。mmap 将用户空间的一块虚拟地址和内核空间的一块虚拟地址同时映射到相同的一块物理内存地址，最终通过地址映射映射到物理内存地址。这种方式避免了内核空间与用户空间的数据交换，epoll函数中就使用了 mmap 减少了内存拷贝。</p>
+<p>在 Java 的 NIO 编程中，则是使用到了 Direct Buffer 来实现内存的零拷贝。Java 直接在 JVM 内存空间之外开辟了一个物理内存空间，这样内核和用户进程都能共享一份缓存数据。</p>
+<h3 id="线程模型优化"><a href="#线程模型优化" class="headerlink" title="线程模型优化"></a>线程模型优化</h3><h3 id="Tomcat参数调优"><a href="#Tomcat参数调优" class="headerlink" title="Tomcat参数调优"></a>Tomcat参数调优</h3>
       
     </div>
     
